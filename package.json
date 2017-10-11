@@ -6,9 +6,9 @@
     "test": "tsc && node ./node_modules/mocha/bin/mocha bin/*/*-tests/*.test.js"
   },
   "repository": {
-	"type": "git",
-	"url": "https://github.com/dobrealexandru/workshop-software-testing.git"
-  }
+    "type": "git",
+    "url": "https://github.com/dobrealexandru/workshop-software-testing.git"
+  },
   "author": "Dobre Andrei-Alexandru",
   "license": "ISC",
   "devDependencies": {
