@@ -1,0 +1,22 @@
+{
+  "name": "workshop-software-testing",
+  "version": "0.1.0",
+  "description": "The practical aspect of the software testing workshop.",
+  "scripts": {
+    "test": "tsc && node ./node_modules/mocha/bin/mocha bin/*/*-tests/*.test.js"
+  },
+  "repository": {
+	"type": "git",
+	"url": "https://github.com/dobrealexandru/workshop-software-testing.git"
+  }
+  "author": "Dobre Andrei-Alexandru",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.0.4",
+    "@types/node": "^8.0.31",
+    "chai": "^4.1.2",
+    "mocha": "^3.5.3",
+    "mocha-typescript": "^1.1.9",
+    "typemoq": "^2.0.1"
+  }
+}
