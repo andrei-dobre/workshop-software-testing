@@ -21,6 +21,14 @@ class BaseOperatorTest {
     }
 
     @test
+    public getNeutralElement__1() {
+
+        const obj = new BaseOperator('');
+
+        assert.equal(obj.neutralElement, 1);
+    }
+
+    @test
     public compute__AnyValues__0() {
 
         const obj = new BaseOperator('');

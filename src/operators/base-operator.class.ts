@@ -18,6 +18,14 @@ export class BaseOperator implements IOperator {
     }
 
     /**
+     * Gets the operation member used to get a result equal to the other member.
+     */
+    public get neutralElement(): number {
+
+        return 1;
+    }
+
+    /**
      * Gets the operator's symbol.
      */
     public get symbol(): string {

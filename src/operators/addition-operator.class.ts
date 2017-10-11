@@ -12,6 +12,14 @@ export class AdditionOperator extends BaseOperator {
 
         super('+');
     }
+    
+    /**
+     * Gets the operation member used to get a result equal to the other member.
+     */
+    public get neutralElement(): number {
+
+        return 0;
+    }
 
     /**
      * Applies the operations on the two provided values.

@@ -19,6 +19,12 @@ class AdditionOperatorTest {
     }
 
     @test
+    public getNeutralElement__0() {
+
+        assert.equal(this._testInstance.neutralElement, 0);
+    }
+
+    @test
     public compute__5_6__11() {
 
         assert.equal(this._testInstance.compute(5, 6), 11);

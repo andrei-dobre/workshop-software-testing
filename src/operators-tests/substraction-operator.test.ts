@@ -17,6 +17,12 @@ class SubstractionOperatorTest {
 
         assert.equal(this._testInstance.symbol, '-');
     }
+    
+    @test
+    public getNeutralElement__0() {
+
+        assert.equal(this._testInstance.neutralElement, 0);
+    }
 
     @test
     public compute__3_2__1() {
