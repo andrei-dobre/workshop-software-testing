@@ -1,19 +1,19 @@
 import { suite, test } from "mocha-typescript"
-import { BaseOperator } from '../operators/base-operator.class';
 import { assert } from "chai";
+import { BaseOperation } from '../operations/base-operation.class';
 
 @suite
-class BaseOperatorTest {
+class BaseOperationTest {
 
     @test
-    public getSymol__ProvidedValue() {
+    public getSymbol__ProvidedValue() {
 
         let providedValue: string;
         let receivedValue: string;
 
         providedValue = 'SomeValue';
 
-        const obj = new BaseOperator(providedValue);
+        const obj = new BaseOperation(providedValue);
 
         receivedValue = obj.symbol;
 
@@ -23,7 +23,7 @@ class BaseOperatorTest {
     @test
     public getNeutralElement__1() {
 
-        const obj = new BaseOperator('');
+        const obj = new BaseOperation('');
 
         assert.equal(obj.neutralElement, 1);
     }
@@ -31,7 +31,7 @@ class BaseOperatorTest {
     @test
     public compute__AnyValues__0() {
 
-        const obj = new BaseOperator('');
+        const obj = new BaseOperation('');
 
         assert.equal(obj.compute(1, 2), 0);
     }

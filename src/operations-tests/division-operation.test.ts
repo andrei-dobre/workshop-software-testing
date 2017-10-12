@@ -1,15 +1,15 @@
 import { suite, test } from 'mocha-typescript';
 import { assert } from 'chai';
-import { DivisionOperator } from '../operators/division-operator.class';
+import { DivisionOperation } from '../operations/division-operation.class';
 
 @suite
-class DivisionOperatorTest {
+class DivisionOperationTest {
 
-    private _testInstance: DivisionOperator;
+    private _testInstance: DivisionOperation;
 
     public before() {
 
-        this._testInstance = new DivisionOperator();
+        this._testInstance = new DivisionOperation();
     }
 
     @test

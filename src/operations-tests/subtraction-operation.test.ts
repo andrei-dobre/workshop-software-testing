@@ -1,15 +1,15 @@
 import { suite, test } from 'mocha-typescript';
 import { assert } from 'chai';
-import { SubstractionOperator } from '../operators/substraction-operator.class';
+import { SubtractionOperation } from '../operations/subtraction-operation.class';
 
 @suite
-class SubstractionOperatorTest {
+class SubtractionOperationTest {
 
-    private _testInstance: SubstractionOperator;
+    private _testInstance: SubtractionOperation;
 
     public before() {
 
-        this._testInstance = new SubstractionOperator();
+        this._testInstance = new SubtractionOperation();
     }
 
     @test

@@ -1,15 +1,15 @@
 import { suite, test } from 'mocha-typescript';
 import { assert } from 'chai';
-import { PowerOperator } from '../operators/power-operator.class';
+import { PowerOperation } from '../operations/power-operation.class';
 
 @suite
-class PowerOperatorTest {
+class PowerOperationTest {
 
-    private _testInstance: PowerOperator;
+    private _testInstance: PowerOperation;
 
     public before() {
 
-        this._testInstance = new PowerOperator();
+        this._testInstance = new PowerOperation();
     }
 
     @test
@@ -24,9 +24,9 @@ class PowerOperatorTest {
         assert.equal(this._testInstance.compute(2, 3), 8);
     }
     
-        @test
-        public compute__4_0Point5__2() {
-    
-            assert.equal(this._testInstance.compute(4, 0.5), 2);
-        }
+    @test
+    public compute__4_0Point5__2() {
+
+        assert.equal(this._testInstance.compute(4, 0.5), 2);
+    }
 }

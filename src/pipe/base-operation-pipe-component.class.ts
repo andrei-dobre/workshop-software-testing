@@ -1,0 +1,53 @@
+import { IOperation } from '../operations-interfaces/i-operation.interface';
+import { IPipeComponent } from '../pipe-interfaces/i-pipe-component.interface';
+
+/**
+ * Provides functionality shared by the pipe components that use an operation
+ * to carry out the computation.
+ */
+export class BaseOperationPipeComponent implements IPipeComponent {
+
+    private _operation: IOperation;
+
+    /**
+     * Initializes a new BaseOperationPipeComponent instance.
+     * 
+     * @param operation The operation that will be used to carry out the computation.
+     */
+    constructor(operation: IOperation) {
+
+        this._operation = operation;
+    }
+    
+    /**
+     * Gets the operation that will be used to carry out the computation.
+     */
+    protected get operation(): IOperation {
+
+        return this._operation;
+    }
+
+    /**
+     * Carries out the computational operations.
+     */
+    async compute(input: number): Promise<number> {
+        
+        const rightMember = await this.getRightValue();
+
+        return new Promise<number>((resolve, reject) => {
+
+            resolve(this.operation.compute(input, rightMember));
+        });
+    }
+
+    /**
+     * Gets the operation's right member.
+     */
+    protected getRightValue(): Promise<number> {
+
+        return new Promise<number>((resolve, reject) => {
+
+            resolve(this.operation.neutralElement);
+        });
+    }
+}
