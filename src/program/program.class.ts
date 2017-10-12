@@ -1,6 +1,12 @@
+import { BaseOperationPipeComponent } from '../pipe/base-operation-pipe-component.class';
+import { MultiplicationOperation } from '../operations/multiplication-operation.class';
+import { BaseOperation } from '../operations/base-operation.class';
+import { IPipeComponent } from '../pipe-interfaces/i-pipe-component.interface';
 import { ReadLine, createInterface } from "readline";
 import { IPipe } from '../pipe-interfaces/i-pipe.interface';
 import { IOperationsCatalog } from '../operations-interfaces/i-operations-catalog.interface';
+import { IOperation } from "../operations-interfaces/i-operation.interface";
+import { ProvidedValueOperationPipeComponent } from '../pipe/provided-value-operation-pipe-component.class';
 
 /**
  * Contains the program's interaction logic.
@@ -64,8 +70,27 @@ export class Program {
                 switch (await this.readLine()) {
 
                     case '1':
+
+                        this.printLine("## Symbol:");
+                        const symbol = await this.readLine();
+
+                        this.printLine("## Right value:");
+                        const rightValue: number = +await this.readLine();
+
+                        if (false === Number.isNaN(rightValue)) {
+
+                            this.addComponent(symbol, rightValue);
+                        }
                         break;
                     case '2':
+
+                        this.printLine("## Input value:");
+                        const input: number = +await this.readLine();
+
+                        if (false === Number.isNaN(input)) {
+
+                            this.printLine(`Pipe output: ${await this.runPipe(input)}`);
+                        }
                         break;
                     case '3':
 
@@ -73,8 +98,53 @@ export class Program {
                         return;
                 }
                 
-                this.printLine('###########################################');
+                this.printLine('Press enter to continue...');
+                await this.readLine();
+
+                console.clear();
             }
+        });
+    }
+
+    /**
+     * Adds a component to the pipe according to the specified parameters.
+     * 
+     * @param symbol    The symbol of the operation that is to be added.
+     * @param value     The right value of the operation.
+     */
+    protected addComponent(symbol: string, value: number): void {
+
+        if (this.operationsCatalog.contains(symbol)) {
+        
+            const operation = this.operationsCatalog.get(symbol).create();
+            const pipeComponent: IPipeComponent = this.createComponent(operation, value);
+
+            this.pipe.addComponent(pipeComponent);
+        }
+
+    }
+
+    /**
+     * Creates a pipe component using the specified operation and right value.
+     * 
+     * @param operation The operation used by the pipe component.
+     * @param value     The operation's right value.
+     */
+    protected createComponent(operation: IOperation, value: number) : IPipeComponent {
+
+        return new ProvidedValueOperationPipeComponent(operation, value);
+    }
+
+    /**
+     * Executes the pipe.
+     * 
+     * @param input The desired input.
+     */
+    protected runPipe(input: number): Promise<number> {
+
+        return new Promise<number>(async (resolve, reject) => {
+
+            resolve(await this.pipe.compute(input));
         });
     }
 

@@ -7,7 +7,5 @@ const pipe = new BasePipe();
 
 const program = new Program(operationsCatalog, pipe);
 
-(async function dontKillMe() { 
-    
-    await program.run();
-})();
+console.clear();
+(async function dontKillMe() { await program.run(); })();
