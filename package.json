@@ -19,8 +19,5 @@
     "mocha-typescript": "^1.1.9",
     "typemoq": "^2.0.1",
     "typescript": "^2.5.3"
-  },
-  "dependencies": {
-    "tsc": "^1.20150623.0"
   }
 }
