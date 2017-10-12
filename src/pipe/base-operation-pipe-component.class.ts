@@ -28,20 +28,20 @@ export class BaseOperationPipeComponent implements IPipeComponent {
     }
 
     /**
-     * Carries out the computational operations.
+     * Carries out the computation.
      */
     async compute(input: number): Promise<number> {
         
-        const rightMember = await this.getRightValue();
+        const rightValue = await this.getRightValue();
 
         return new Promise<number>((resolve, reject) => {
 
-            resolve(this.operation.compute(input, rightMember));
+            resolve(this.operation.compute(input, rightValue));
         });
     }
 
     /**
-     * Gets the operation's right member.
+     * Gets the operation's right value.
      */
     protected getRightValue(): Promise<number> {
 

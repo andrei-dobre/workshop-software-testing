@@ -66,34 +66,34 @@ class BaseOperationPipeComponentTest {
     @test
     public async compute__operation_compute_correct_parameters() {
 
-        let providedLeftMember: number;
-        let receivedLeftMember: number;
-        let providedRightMember: number;
-        let receivedRightMember: number;
+        let providedLeftValue: number;
+        let receivedLeftValue: number;
+        let providedRightValue: number;
+        let receivedRightValue: number;
 
-        providedLeftMember = 123.45;
-        receivedLeftMember = 0;
-        providedRightMember = 234.56;
-        receivedRightMember = 0;
+        providedLeftValue = 123.45;
+        receivedLeftValue = 0;
+        providedRightValue = 234.56;
+        receivedRightValue = 0;
 
         const operationMock = Moq.Mock.ofType<IOperation>();
         operationMock
             .setup(x => x.compute(Moq.It.isAnyNumber(), Moq.It.isAnyNumber()))
             .callback((left, right) => {
 
-                receivedLeftMember = left;
-                receivedRightMember = right;
+                receivedLeftValue = left;
+                receivedRightValue = right;
             })
             .returns(() => 0);
 
         const objMock = Moq.Mock.ofType(BaseOperationPipeComponent);
         objMock.callBase = true;
         objMock.setup(x => x['operation']).returns(() => operationMock.object);
-        objMock.setup(x => x['getRightValue']()).returns(() =>  new Promise<number>((resolve, reject) => resolve(providedRightMember)));
+        objMock.setup(x => x['getRightValue']()).returns(() =>  new Promise<number>((resolve, reject) => resolve(providedRightValue)));
     
-        await objMock.object.compute(providedLeftMember);
+        await objMock.object.compute(providedLeftValue);
 
-        assert.equal(receivedLeftMember, providedLeftMember);
-        assert.equal(receivedRightMember, providedRightMember);
+        assert.equal(receivedLeftValue, providedLeftValue);
+        assert.equal(receivedRightValue, providedRightValue);
     }
 }

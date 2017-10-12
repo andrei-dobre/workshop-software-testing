@@ -22,7 +22,7 @@ export class ProvidedValueOperationPipeComponent extends BaseOperationPipeCompon
     }
 
     /**
-     * Gets the operation's right member.
+     * Gets the operation's right value.
      */
     protected getRightValue(): Promise<number> {
 
