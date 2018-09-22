@@ -1,6 +1,6 @@
 import { BasePipe } from './pipe/base-pipe.class';
 import { OperationsCatalog } from './operations/operations-catalog.class';
-import { Program } from './program/program.class';
+import { Program } from './program.class';
 
 const operationsCatalog = new OperationsCatalog();
 const pipe = new BasePipe();

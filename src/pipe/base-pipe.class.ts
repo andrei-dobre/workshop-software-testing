@@ -1,46 +1,24 @@
-import { IPipe } from '../pipe-interfaces/i-pipe.interface';
-import { IPipeComponent } from '../pipe-interfaces/i-pipe-component.interface';
+import { IPipe } from './interfaces/i-pipe.interface';
+import { IPipeComponent } from './interfaces/i-pipe-component.interface';
 
-/**
- * A basic implementation of the IPipe interface.
- * 
- * @see IPipe
- */
 export class BasePipe implements IPipe {
-    
-    private _componentsQueue: Array<IPipeComponent>;
+    private components: Array<IPipeComponent>;
 
-    /**
-     * Initializes a new BasePipe instance.
-     */
-    constructor() {
-
-        this._componentsQueue = [];
+    public constructor() {
+        this.components = [];
     }
 
-    /**
-     * Runs the specified input through the pipe.
-     */
-    public compute(input: number): Promise<number> {
+    public async compute(input: number): Promise<number> {
+        let output = input;
 
-        return new Promise<number>(async (resolve, reject) => {
-
-            let output = input;
-
-            for (const component of this._componentsQueue) {
-
-                output = await component.compute(output);
-            }
-
-            resolve(output);
-        });
-    }
-
-    /**
-     * Adds a component at the end of the pipe.
-     */
-    public addComponent(component: IPipeComponent): void {
+        for (const component of this.components) {
+            output = await component.compute(output);
+        }
         
-        this._componentsQueue.push(component);
+        return output;
+    }
+
+    public addComponent(component: IPipeComponent): void {
+        this.components.push(component);
     }
 }

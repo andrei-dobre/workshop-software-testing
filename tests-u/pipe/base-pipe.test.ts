@@ -1,17 +1,15 @@
 import { suite, test } from "mocha-typescript";
 import { assert } from 'chai';
 import * as Moq from 'typemoq';
-import { IPipeComponent } from '../pipe-interfaces/i-pipe-component.interface';
-import { BasePipe } from "../pipe/base-pipe.class";
+import { IPipeComponent } from '../../src/pipe/interfaces/i-pipe-component.interface';
+import { BasePipe } from "../../src/pipe/base-pipe.class";
 
 @suite
 class BasePipeTest {
-
     @test
     public addComponent__AppendedAtTheEnd() {
-       
-        const obj = new BasePipe();
-        const componentsQueue = obj['_componentsQueue'];
+        const testInstance = new BasePipe();
+        const componentsQueue = testInstance['components'];
 
         componentsQueue.push(Moq.Mock.ofType<IPipeComponent>().object);
         componentsQueue.push(Moq.Mock.ofType<IPipeComponent>().object);
@@ -23,7 +21,7 @@ class BasePipeTest {
         let addedComponent: IPipeComponent;
         addedComponent = Moq.Mock.ofType<IPipeComponent>().object;
 
-        obj.addComponent(addedComponent);
+        testInstance.addComponent(addedComponent);
 
         assert.equal(componentsQueue.length, initialLength + 1);
         assert.equal(componentsQueue[componentsQueue.length - 1], addedComponent);
@@ -31,23 +29,19 @@ class BasePipeTest {
 
     @test
     public async compute__AllComponentsPiped() {
-
-        const obj = new BasePipe();
+        const testInstance = new BasePipe();
 
         const inputs = new Array<number>();
         const outputs = new Array<number>();
-        const componentsQueue = obj['_componentsQueue'];
+        const componentsQueue = testInstance['components'];
 
         const componentsCount = 5;
 
         for (let i = 0; i < componentsCount; ++i) {
-
             if (0 === i) {
-                
                 inputs.push((i + 1) * 4.65);
             }
             else {
-
                 inputs.push(outputs[i-1]);
             }
 
@@ -61,22 +55,21 @@ class BasePipeTest {
             componentsQueue.push(componentMock.object);
         }
 
-        const result = await obj.compute(inputs[0]);
+        const result = await testInstance.compute(inputs[0]);
 
         assert.equal(result, outputs[componentsCount - 1]);
     }
 
     @test
     public async compute_NoComponents_Input() {
-
         let providedValue: number;
         let receivedValue: number;
 
         providedValue = 123.45;
 
-        const obj = new BasePipe();
+        const testInstance = new BasePipe();
 
-        receivedValue = await obj.compute(providedValue);
+        receivedValue = await testInstance.compute(providedValue);
 
         assert.equal(providedValue, receivedValue);
     }

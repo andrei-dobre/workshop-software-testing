@@ -1,7 +1,6 @@
 import { IOperationFactory } from './i-operation-factory.interface';
 
 export interface IOperationsCatalog {
-
     /**
      * Gets a factory capable of instantiating the operation associated with the specified symbol.
      */

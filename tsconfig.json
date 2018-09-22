@@ -1,31 +1,32 @@
 {
 	"compilerOptions": {
-        
-        "outDir": "bin",
-        "moduleResolution": "node",
+		"outDir": "bin",
+		"moduleResolution": "node",
+
+		"rootDir": "./",
 
 		"alwaysStrict": true,
 		"strictNullChecks": true,
 		
 		"allowJs": false,
 		"allowUnreachableCode": false,
-        "allowUnusedLabels": false,
-        
+		"allowUnusedLabels": false,
+		
 		"noUnusedLocals": false,
-        "noUnusedParameters": false,
-        
+		"noUnusedParameters": false,
+		
 		"noFallthroughCasesInSwitch": true,
 		"noImplicitAny": true,
 		"noImplicitReturns": true,
 		"noImplicitThis": true,
-				        
-        "target": "ES6",
-        "module": "commonjs",
+						
+		"target": "ES6",
+		"module": "commonjs",
 
-        "experimentalDecorators": true
-    },
-    
-    "typeRoots": [ "node_modules/@types/" ],
-    
-    "exclude": [ "node_modules", "bin" ]
+		"experimentalDecorators": true
+	},
+	
+	"typeRoots": [ "node_modules/@types/" ],
+	
+	"exclude": [ "node_modules", "bin" ]
 }

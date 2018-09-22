@@ -1,9 +1,10 @@
 {
   "name": "workshop-software-testing",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "The practical aspect of the software testing workshop.",
   "scripts": {
-    "test": "tsc && node ./node_modules/mocha/bin/mocha bin/*-tests/*.test.js"
+    "start": "tsc && node bin/src/index.js",
+    "test": "tsc && node ./node_modules/mocha/bin/mocha bin/tests-u/**/*.test.js"
   },
   "repository": {
     "type": "git",

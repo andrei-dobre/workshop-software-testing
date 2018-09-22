@@ -1,30 +1,27 @@
 import { suite, test } from 'mocha-typescript';
 import { assert } from 'chai';
 import * as Moq from 'typemoq';
-import { IOperation } from '../operations-interfaces/i-operation.interface';
-import { BaseOperationPipeComponent } from '../pipe/base-operation-pipe-component.class';
+import { IOperation } from '../../src/operations/interfaces/i-operation.interface';
+import { BaseOperationPipeComponent } from '../../src/pipe/base-operation-pipe-component.class';
 
 @suite
 class BaseOperationPipeComponentTest {
-
     @test
     public getOperation__ProvidedValue() {
-        
         let providedValue: IOperation;
         let receivedValue: IOperation;
         
         providedValue = Moq.Mock.ofType<IOperation>().object;
         
-        const obj = new BaseOperationPipeComponent(providedValue);
+        const testInstance = new BaseOperationPipeComponent(providedValue);
         
-        receivedValue = obj['operation'];
+        receivedValue = testInstance['operation'];
         
         assert.equal(receivedValue, providedValue);
     }
 
     @test
     public async getRightValue__OperationNeutralElement() {
-       
         let providedValue: number;
         let receivedValue: number;
 
@@ -44,7 +41,6 @@ class BaseOperationPipeComponentTest {
     
     @test
     public async compute__operation_compute() {
-
         let providedValue: number;
         let receivedValue: number;
 
@@ -65,7 +61,6 @@ class BaseOperationPipeComponentTest {
 
     @test
     public async compute__operation_compute_correct_parameters() {
-
         let providedLeftValue: number;
         let receivedLeftValue: number;
         let providedRightValue: number;
